@@ -69,10 +69,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #b67595; outline-offs
 .end-heart { font: 100px/1.3 "Segoe UI Symbol", sans-serif; color: #ba7b98; }
 .end-screen h1 { font-size: clamp(21px, 3vw, 34px); font-weight: 400; letter-spacing: 3px; margin: 22px 0 14px; }
 .end-screen p { font-size: 12px; color: #a07d8d; line-height: 1.8; }
-.reply-entry { display: flex; flex-direction: column; align-items: center; gap: 7px; margin-top: 16px; }
-.reply-open { display: inline-flex; align-items: center; gap: 9px; padding: 10px 20px; border: 1px dashed #d3aebf; border-radius: 100px; background: #fff9fbe0; color: #9e607e; font-size: 12px; letter-spacing: 1px; }
-.reply-open:hover { background: #ffffff; }
-.reply-entry-hint { font-size: 9px; color: #9c7a8b; letter-spacing: 1px; padding: 2px 10px; border-radius: 100px; background: #fffaf7d9; }
+.reply-float { position: fixed; right: 18px; bottom: 96px; z-index: 30; display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border: 1px solid #ffffffb5; border-radius: 100px; background: #fff9fbe8; color: #9e607e; font-size: 12px; letter-spacing: 1px; box-shadow: 0 10px 30px #9d66812e; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.reply-float:hover { background: #ffffff; }
+body.awaiting-start .reply-float { display: none; }
+@media (max-width: 760px) { .reply-float { right: 12px; bottom: 84px; padding: 11px 15px; font-size: 11px; } }
+
 .reply-past { width: min(520px, calc(100vw - 52px)); margin: 20px auto 0; padding: 15px 18px 13px; border: 1px solid #f1dfe7; border-radius: 14px; background: #fffafbd9; text-align: left; box-shadow: 0 10px 28px #9d66811c; }
 .reply-past-label { display: block; font-size: 9.5px; letter-spacing: 2px; color: #b2879a; }
 .reply-past-text { margin: 8px 0 6px; font: 13px/1.9 "KaiTi", "STKaiti", serif; color: #8f6677; white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -705,10 +706,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid #b67595; outline-offs
     <h1 id="end-title">愿这份美好，一直陪着你</h1>
     <p>祝福已收好，你可以关闭这个标签页，或再看一次。</p>
     <button id="restart" class="primary-button">再看一次祝福 <span aria-hidden="true">↗</span></button>
-    <div class="reply-entry">
-      <button id="reply-open" class="reply-open" type="button"><span aria-hidden="true">✉</span> 也想对你说</button>
-      <span class="reply-entry-hint">写好后会寄到 hhhzjyhh@163.com</span>
-    </div>
     <div id="reply-past" class="reply-past" hidden>
       <span class="reply-past-label">你上次留下的回信</span>
       <p id="reply-past-text" class="reply-past-text"></p>
@@ -781,7 +778,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #b67595; outline-offs
     </div>
   </dialog>
 
-  <nav id="controls" class="controls" aria-label="播放控制" hidden>
+    <button id="reply-open" class="reply-float" type="button" aria-label="也想对你说，写一封回信"><span aria-hidden="true">✉</span> 也想对你说</button>
+
+<nav id="controls" class="controls" aria-label="播放控制" hidden>
     <button id="replay" title="重新播放（R）"><span aria-hidden="true">↻</span> 重播</button>
     <button id="reset-cards" title="把拖动或收起的卡片放回爱心" hidden disabled><span aria-hidden="true">♡</span> 归位</button>
     <span id="music-divider" class="control-divider" aria-hidden="true"></span>
@@ -3124,6 +3123,16 @@ document.getElementById("start-quiet").hidden = !BACKGROUND_MUSIC.src;
 
 // 口令模式下不再提供 ?to= 直通入口：任何打开方式都要先过口令。
 if (identityOpen) document.getElementById('wish-name').focus({preventScroll:true});
+
+// 口令只在本机校验：若地址栏残留 wish-name，进入后立刻抹掉，避免写进浏览历史。
+try {
+  const cleanUrl = new URL(location.href);
+  if (cleanUrl.searchParams.has('wish-name')) {
+    cleanUrl.searchParams.delete('wish-name');
+    history.replaceState(null, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+  }
+} catch (error) {}
+
 
 function ensureInteraction(){
   cardInteraction ??= createCardInteraction({cards,stage,getNodes:()=>nodes,getPositions:()=>positions,getCardSize:()=>({width:cardWidth,height:cardHeight}),position:positionCard,onStatus:text=>status.textContent=text});
