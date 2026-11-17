@@ -69,6 +69,50 @@ button:focus-visible, a:focus-visible { outline: 3px solid #b67595; outline-offs
 .end-heart { font: 100px/1.3 "Segoe UI Symbol", sans-serif; color: #ba7b98; }
 .end-screen h1 { font-size: clamp(21px, 3vw, 34px); font-weight: 400; letter-spacing: 3px; margin: 22px 0 14px; }
 .end-screen p { font-size: 12px; color: #a07d8d; line-height: 1.8; }
+.reply-entry { display: flex; flex-direction: column; align-items: center; gap: 7px; margin-top: 16px; }
+.reply-open { display: inline-flex; align-items: center; gap: 9px; padding: 10px 20px; border: 1px dashed #d3aebf; border-radius: 100px; background: #fff9fbe0; color: #9e607e; font-size: 12px; letter-spacing: 1px; }
+.reply-open:hover { background: #ffffff; }
+.reply-entry-hint { font-size: 9px; color: #9c7a8b; letter-spacing: 1px; padding: 2px 10px; border-radius: 100px; background: #fffaf7d9; }
+.reply-past { width: min(520px, calc(100vw - 52px)); margin: 20px auto 0; padding: 15px 18px 13px; border: 1px solid #f1dfe7; border-radius: 14px; background: #fffafbd9; text-align: left; box-shadow: 0 10px 28px #9d66811c; }
+.reply-past-label { display: block; font-size: 9.5px; letter-spacing: 2px; color: #b2879a; }
+.reply-past-text { margin: 8px 0 6px; font: 13px/1.9 "KaiTi", "STKaiti", serif; color: #8f6677; white-space: pre-wrap; overflow-wrap: anywhere; }
+.reply-past-time { display: block; text-align: right; font-size: 9px; color: #bfa6b1; letter-spacing: 1px; }
+.reply-dialog { width: min(462px, calc(100vw - 36px)); max-height: calc(100vh - 36px); padding: 0; border: 0; border-radius: 18px; background: transparent; overflow: visible; }
+.reply-dialog::backdrop { background: #120a16c4; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); }
+.reply-form { padding: 24px 24px 20px; border-radius: 18px; background: linear-gradient(165deg, #fffdfa, #fbf0f2 70%, #f7e7ee); box-shadow: 0 24px 70px #00000059; text-align: center; }
+.reply-form h2 { margin: 9px 0 5px; font: 400 25px/1.5 "KaiTi", "STKaiti", serif; color: #a16483; letter-spacing: 2px; }
+.reply-intro { margin: 0 0 13px; font-size: 11px; line-height: 1.9; color: #9d7d8c; }
+.reply-paper { position: relative; padding: 3px 4px; border-radius: 10px; background: repeating-linear-gradient(#fffdf8, #fffdf8 27px, #f2e5e9 28px); box-shadow: inset 0 0 0 1px #f4e6ea; transition: transform .45s cubic-bezier(.4,.1,.2,1), opacity .3s; transform-origin: 50% 88%; }
+.reply-text { display: block; width: 100%; min-height: 130px; padding: 9px 10px 22px; border: 0; background: transparent; color: #87606f; font: 13px/28px "KaiTi", "STKaiti", serif; letter-spacing: .5px; resize: vertical; outline: none; box-sizing: border-box; }
+.reply-text::placeholder { color: #c3adb8; }
+.reply-sign { position: absolute; right: 12px; bottom: 5px; font-size: 9.5px; color: #b797a5; }
+.reply-actions { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
+.reply-actions .primary-button { margin-top: 0; padding: 12px 22px; }
+.reply-quiet { padding: 12px 16px; border: 0; border-radius: 100px; background: transparent; color: #a28693; font-size: 11px; }
+.reply-status { min-height: 15px; margin: 9px 0 0; font-size: 10px; letter-spacing: 1px; color: #a97c94; }
+.reply-dialog.is-folding .reply-paper { transform: perspective(900px) rotateX(-8deg) scale(.88, .4); opacity: .3; }
+.reply-sent { padding: 24px 24px 18px; border-radius: 18px; background: linear-gradient(165deg, #fffdfa, #fbf0f2 70%, #f7e7ee); box-shadow: 0 24px 70px #00000059; text-align: center; }
+.reply-sent h2 { margin: 9px 0 5px; font: 400 25px/1.5 "KaiTi", "STKaiti", serif; color: #a16483; letter-spacing: 2px; }
+.reply-view-paper { margin-top: 4px; text-align: left; }
+.reply-view-text { margin: 0; padding: 10px 12px 13px; min-height: 96px; font: 13px/28px "KaiTi", "STKaiti", serif; color: #87606f; white-space: pre-wrap; overflow-wrap: anywhere; }
+.reply-actions .reply-quiet { border: 1px solid #e7d2dd; background: #fffafce0; }
+.reply-flight { position: fixed; inset: 0; z-index: 9999; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+.fly-envelope { position: relative; width: 170px; height: 112px; border-radius: 8px; background: linear-gradient(160deg, #fffdf8, #f6e8dd); box-shadow: 0 16px 42px #0000003d; animation: flyAway 1.75s cubic-bezier(.36,.05,.2,1) forwards; }
+.fly-envelope::before { content: ""; position: absolute; inset: 0; border-radius: 8px; background: linear-gradient(180deg, transparent 46%, #ffffff33 47%, transparent 51%); }
+.fly-envelope::after { content: ""; position: absolute; left: 50%; top: 50%; border-style: solid; border-width: 56px 85px 0; border-color: #ecd7cb transparent transparent; transform: translate(-50%, -44%); }
+.fly-seal { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; margin: -4px 0 0 -13px; border-radius: 50%; background: #b97f98; color: #fff5fa; font: 13px/26px "Segoe UI Symbol", sans-serif; text-align: center; box-shadow: 0 3px 8px #6d3a4d3d; }
+@keyframes flyAway {
+  0% { transform: translate(0, 0) rotate(0) scale(.7); opacity: 0; }
+  16% { transform: translate(0, 0) rotate(-2deg) scale(1); opacity: 1; }
+  55% { transform: translate(6vw, -11vh) rotate(6deg) scale(.97); opacity: 1; }
+  100% { transform: translate(34vw, -46vh) rotate(18deg) scale(.32); opacity: 0; }
+}
+@media (max-width: 760px) {
+  .reply-dialog { width: calc(100vw - 28px); }
+  .reply-form { padding: 20px 16px 16px; }
+  .reply-past { width: calc(100vw - 40px); }
+}
+
 .primary-button { border: 1px solid #fff8; border-radius: 100px; background: #b77493; color: white; padding: 13px 24px; margin-top: 25px; font-size: 12px; box-shadow: 0 5px 15px #a66c8720; }
 .primary-button span { margin-left: 20px; }
 .letter-entry { pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 12px 22px; border: 1px solid #ffffffd9; border-radius: 100px; background: #fff9f9d9; color: #9e607e; box-shadow: 0 6px 24px #9d668122; font-size: 12px; }
@@ -661,9 +705,61 @@ button:focus-visible, a:focus-visible { outline: 3px solid #b67595; outline-offs
     <h1 id="end-title">愿这份美好，一直陪着你</h1>
     <p>祝福已收好，你可以关闭这个标签页，或再看一次。</p>
     <button id="restart" class="primary-button">再看一次祝福 <span aria-hidden="true">↗</span></button>
+    <div class="reply-entry">
+      <button id="reply-open" class="reply-open" type="button"><span aria-hidden="true">✉</span> 也想对你说</button>
+      <span class="reply-entry-hint">写好后会寄到 hhhzjyhh@163.com</span>
+    </div>
+    <div id="reply-past" class="reply-past" hidden>
+      <span class="reply-past-label">你上次留下的回信</span>
+      <p id="reply-past-text" class="reply-past-text"></p>
+      <span id="reply-past-time" class="reply-past-time"></span>
+    </div>
+
   </section>
 
-  <dialog id="card-reader" class="card-reader" aria-labelledby="card-reader-title" aria-describedby="card-reader-message">
+    <dialog id="reply-dialog" class="reply-dialog" aria-labelledby="reply-title">
+    <form id="reply-form" class="reply-form" method="dialog">
+      <span class="eyebrow">A LETTER BACK</span>
+      <h2 id="reply-title">也想对你说</h2>
+      <p class="reply-intro">把想说的话写在信纸上，折好后它会飞到我这里。</p>
+      <div class="reply-paper" id="reply-paper">
+        <textarea id="reply-text" class="reply-text" maxlength="600" rows="6" placeholder="想说的话…" required></textarea>
+        <span class="reply-sign">—— 写回信的那个人</span>
+      </div>
+      <div class="reply-actions">
+        <button id="reply-send" class="primary-button" type="submit">折好寄出 <span aria-hidden="true">✉</span></button>
+        <button id="reply-cancel" type="button" class="reply-quiet">先不写</button>
+      </div>
+      <p id="reply-status" class="reply-status" role="status"></p>
+    </form>
+    <div id="reply-sent" class="reply-sent" hidden>
+      <span class="eyebrow">SENT WITH LOVE</span>
+      <h2>回信折好了</h2>
+      <p class="reply-intro">复制回信，或者把链接发给我，我就能收到。</p>
+      <div class="reply-paper reply-view-paper"><p id="reply-sent-text" class="reply-view-text"></p></div>
+      <div class="reply-actions">
+        <button id="reply-copy-text" class="primary-button" type="button">复制回信</button>
+        <button id="reply-copy-link" type="button" class="reply-quiet">复制链接</button>
+        <button id="reply-mail" type="button" class="reply-quiet">发到邮箱</button>
+      </div>
+      <p id="reply-copy-status" class="reply-status" role="status"></p>
+      <button id="reply-done" type="button" class="reply-quiet">完成</button>
+    </div>
+  </dialog>
+
+  <dialog id="reply-view" class="reply-dialog" aria-labelledby="reply-view-title">
+    <div class="reply-sent">
+      <span class="eyebrow">A LETTER BACK</span>
+      <h2 id="reply-view-title">收到一封回信</h2>
+      <p class="reply-intro">有人在这份祝福里，写下了想对你说的话。</p>
+      <div class="reply-paper reply-view-paper"><p id="reply-view-text" class="reply-view-text"></p></div>
+      <button id="reply-view-close" class="primary-button" type="button">收下</button>
+    </div>
+  </dialog>
+
+  <div id="reply-flight" class="reply-flight" hidden aria-hidden="true"><div class="fly-envelope"><span class="fly-flap"></span><span class="fly-seal">♡</span></div></div>
+
+<dialog id="card-reader" class="card-reader" aria-labelledby="card-reader-title" aria-describedby="card-reader-message">
     <div class="card-reader-paper"><span class="card-reader-heart" aria-hidden="true">♡</span><h2 id="card-reader-title">一份小小的祝福</h2><p id="card-reader-message"></p><span class="card-reader-note">把这份祝福，轻轻放进心里</span><div class="card-reader-actions"><button id="card-reader-close" type="button">继续看看</button><button id="card-reader-return" type="button">放回爱心</button></div></div>
   </dialog>
 
@@ -3034,6 +3130,219 @@ function ensureInteraction(){
   return cardInteraction;
 }
 
+// ===== 也想对你说：收件人的回信 =====
+const REPLY_KEY = 'xinghe-reply-v1';
+const REPLY_MAILBOX = 'hhhzjyhh@163.com';
+
+const replyOpenBtn = document.getElementById('reply-open');
+const replyDialog = document.getElementById('reply-dialog');
+const replyForm = document.getElementById('reply-form');
+const replyText = document.getElementById('reply-text');
+const replySendBtn = document.getElementById('reply-send');
+const replyStatus = document.getElementById('reply-status');
+const replyPast = document.getElementById('reply-past');
+const replyPastText = document.getElementById('reply-past-text');
+const replyPastTime = document.getElementById('reply-past-time');
+const replyFlight = document.getElementById('reply-flight');
+const replySentPanel = document.getElementById('reply-sent');
+const replySentText = document.getElementById('reply-sent-text');
+const replyCopyStatus = document.getElementById('reply-copy-status');
+const replyView = document.getElementById('reply-view');
+const replyViewText = document.getElementById('reply-view-text');
+
+let lastReplyText = '';
+
+function readStoredReply() {
+  try {
+    const raw = localStorage.getItem(REPLY_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function storeReply(data) {
+  try {
+    localStorage.setItem(REPLY_KEY, JSON.stringify(data));
+  } catch (error) {}
+}
+
+function formatReplyTime(iso) {
+  const date = iso ? new Date(iso) : new Date();
+  if (Number.isNaN(date.getTime())) return '';
+  const pad = value => String(value).padStart(2, '0');
+  return date.getFullYear() + '.' + pad(date.getMonth() + 1) + '.' + pad(date.getDate()) + ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes());
+}
+
+function renderStoredReply() {
+  const data = readStoredReply();
+  if (!data || !data.text) {
+    replyPast.hidden = true;
+    return;
+  }
+  replyPastText.textContent = data.text;
+  replyPastTime.textContent = formatReplyTime(data.time);
+  replyPast.hidden = false;
+}
+
+function toBase64Url(text) {
+  const bytes = new TextEncoder().encode(text);
+  let binary = '';
+  bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function fromBase64Url(value) {
+  const base = value.replace(/-/g, '+').replace(/_/g, '/');
+  const pad = base.length % 4 ? '='.repeat(4 - (base.length % 4)) : '';
+  const binary = atob(base + pad);
+  const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function replyLink(text) {
+  return location.href.split('#')[0] + '#reply=' + toBase64Url(text);
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (error) {
+    try {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.append(area);
+      area.select();
+      const ok = document.execCommand('copy');
+      area.remove();
+      return ok;
+    } catch (fallbackError) {
+      return false;
+    }
+  }
+}
+
+function openMailClient(text) {
+  const subject = encodeURIComponent('星河祝福 · 收到一封回信');
+  const body = encodeURIComponent(text + '\n\n—— 来自星河祝福的回信');
+  window.location.href = 'mailto:' + REPLY_MAILBOX + '?subject=' + subject + '&body=' + body;
+}
+
+function playEnvelopeFlight(done) {
+  replyFlight.hidden = false;
+  const envelope = replyFlight.querySelector('.fly-envelope');
+  envelope.style.animation = 'none';
+  void envelope.offsetWidth;
+  envelope.style.animation = '';
+  window.setTimeout(() => {
+    replyFlight.hidden = true;
+    done();
+  }, 1780);
+}
+
+function showCompose() {
+  replySentPanel.hidden = true;
+  replyForm.hidden = false;
+  replyCopyStatus.textContent = '';
+  replyStatus.textContent = '';
+}
+
+function showSent(text) {
+  lastReplyText = text;
+  replySentText.textContent = text;
+  replyForm.hidden = true;
+  replySentPanel.hidden = false;
+  replyCopyStatus.textContent = '';
+}
+
+replyOpenBtn.addEventListener('click', () => {
+  const saved = readStoredReply();
+  if (saved && saved.text) replyText.value = saved.text;
+  showCompose();
+  replyDialog.showModal();
+  replyText.focus({ preventScroll: true });
+});
+
+document.getElementById('reply-cancel').addEventListener('click', () => {
+  replyDialog.close();
+});
+
+replyForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const text = replyText.value.trim();
+  if (!text) {
+    replyStatus.textContent = '信纸还是空的，写两句再寄出吧。';
+    replyText.focus();
+    return;
+  }
+  storeReply({ text: text, time: new Date().toISOString() });
+  renderStoredReply();
+  replyStatus.textContent = '正在折好，寄出去…';
+  replyText.disabled = true;
+  replySendBtn.disabled = true;
+  replyDialog.classList.add('is-folding');
+  playEnvelopeFlight(() => {
+    replyDialog.classList.remove('is-folding');
+    replyText.disabled = false;
+    replySendBtn.disabled = false;
+    showSent(text);
+  });
+});
+
+document.getElementById('reply-copy-text').addEventListener('click', async () => {
+  const ok = await copyToClipboard(lastReplyText);
+  replyCopyStatus.textContent = ok ? '回信已复制，直接发给我就好。' : '复制失败，可以手动选中文字复制。';
+});
+
+document.getElementById('reply-copy-link').addEventListener('click', async () => {
+  const ok = await copyToClipboard(replyLink(lastReplyText));
+  replyCopyStatus.textContent = ok ? '链接已复制，打开就能看到这封回信。' : '复制失败，请长按输入框手动复制。';
+});
+
+document.getElementById('reply-mail').addEventListener('click', () => {
+  openMailClient(lastReplyText);
+  replyCopyStatus.textContent = '已打开邮件客户端，发送即可。';
+});
+
+document.getElementById('reply-done').addEventListener('click', () => {
+  replyDialog.close();
+  showCompose();
+  replyText.value = '';
+  replyOpenBtn.innerHTML = '<span aria-hidden="true">✉</span> 再写一封';
+});
+
+replyDialog.addEventListener('close', () => {
+  replyDialog.classList.remove('is-folding');
+  replyText.disabled = false;
+  replySendBtn.disabled = false;
+});
+
+document.getElementById('restart').addEventListener('click', () => {
+  if (replyDialog.open) replyDialog.close();
+  if (replyView.open) replyView.close();
+  replyFlight.hidden = true;
+});
+
+document.getElementById('reply-view-close').addEventListener('click', () => {
+  replyView.close();
+});
+
+function showIncomingReply() {
+  const match = /#reply=([^&\s]+)/.exec(location.hash);
+  if (!match) return;
+  try {
+    const text = fromBase64Url(match[1]);
+    if (!text) return;
+    replyViewText.textContent = text;
+    replyView.showModal();
+  } catch (error) {}
+}
+
+renderStoredReply();
+showIncomingReply();
 </script>
 </body>
 </html>
